@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AGA | Automatizaciones Ganaderas y Agrícolas — IA e IoT Agropecuario</title>
+  <meta name="description" content="Tecnificamos el campo mexicano con Inteligencia Artificial, Internet de las Cosas (IoT) y Ciencia de Datos. Conoce SmartAgro y SMART-WEIGHING de AGA." />
+
+  <!-- Tipografías Google Fonts: Plus Jakarta Sans e Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest: {
+              DEFAULT: '#0A3622',
+              dark: '#062115',
+              light: '#114D32',
+            },
+            techgreen: {
+              DEFAULT: '#16A34A',
+              vibrant: '#22C55E',
+              soft: '#DCFCE7',
+            },
+            harvest: {
+              DEFAULT: '#F59E0B',
+              dark: '#D97706',
+              light: '#FEF3C7',
+            },
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            'glow-green': '0 0 30px rgba(34, 197, 94, 0.22)',
+            'glow-gold': '0 0 25px rgba(245, 158, 11, 0.22)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Estilos base y animaciones suaves personalizadas */
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: #1E293B;
+      background-color: #F8FAFC;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .font-display {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    }
+
+    /* Patrón sutil de malla tecnológica para secciones oscuras */
+    .bg-tech-grid {
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(34, 197, 94, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 80% 75%, rgba(245, 158, 11, 0.09) 0%, transparent 45%),
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 36px 36px, 36px 36px;
+    }
+
+    /* Animación de entrada progresiva al hacer scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Pulso suave para indicadores en vivo */
+    @keyframes pulseRing {
+      0% { transform: scale(0.85); opacity: 0.9; }
+      70% { transform: scale(1.7); opacity: 0; }
+      100% { transform: scale(1.7); opacity: 0; }
+    }
+    .live-dot::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 9999px;
+      background-color: #22C55E;
+      animation: pulseRing 2s infinite;
+    }
+
+    /* Barra de desplazamiento estilizada para pestañas en móvil */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-techgreen selection:text-white">
+
+  <!-- =====================================================================
+       1. BARRA DE NAVEGACIÓN FIJA (STICKY NAVBAR)
+       ===================================================================== -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logotipo Vectorial SVG inspirado en el emblema circular de AGA -->
+        <a href="#inicio" class="flex items-center gap-3 group focus:outline-none" aria-label="Inicio AGA">
+          <div class="relative w-12 h-12 flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
+            <svg viewBox="0 0 100 100" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Arco exterior superior bosque profundo -->
+              <path d="M 14 48 A 36 36 0 0 1 86 48" stroke="#0A3622" stroke-width="6.5" stroke-linecap="round" />
+              <!-- Arco exterior inferior bosque profundo -->
+              <path d="M 86 56 A 36 36 0 0 1 14 56" stroke="#0A3622" stroke-width="6.5" stroke-linecap="round" />
+              <!-- Arco interior dorado cosecha -->
+              <path d="M 23 47 A 27 27 0 0 1 77 47" stroke="#F59E0B" stroke-width="3" stroke-linecap="round" />
+              <path d="M 75 58 A 27 27 0 0 1 25 58" stroke="#16A34A" stroke-width="3" stroke-linecap="round" />
+              <!-- Gráfica de barras ascendente -->
+              <rect x="31" y="45" width="7" height="13" rx="1.5" fill="#16A34A" />
+              <rect x="42" y="39" width="7" height="19" rx="1.5" fill="#16A34A" />
+              <rect x="53" y="33" width="7" height="25" rx="1.5" fill="#0A3622" />
+              <!-- Flecha de crecimiento dorado -->
+              <path d="M 29 41 L 43 32 L 50 35 L 67 22" stroke="#F59E0B" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M 60 21 L 68 21 L 67 29" stroke="#F59E0B" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+              <!-- Banda central AGA -->
+              <rect x="20" y="61" width="60" height="15" rx="4" fill="#0A3622" />
+              <text x="50" y="72" text-anchor="middle" fill="#FFFFFF" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="11.5" letter-spacing="1.5">AGA</text>
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-display font-extrabold text-xl tracking-tight text-forest leading-none">
+              AGA
+            </span>
+            <span class="text-[11px] sm:text-xs font-semibold text-slate-600 leading-tight mt-0.5">
+              Automatizaciones Ganaderas y Agrícolas
+            </span>
+          </div>
+        </a>
+
+        <!-- Enlaces de navegación Desktop -->
+        <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold text-slate-700">
+          <a href="#inicio" class="hover:text-techgreen transition-colors">Inicio</a>
+          <a href="#inteligencia-artificial" class="hover:text-techgreen transition-colors flex items-center gap-1.5">
+            <span>Inteligencia Artificial</span>
+            <span class="px-1.5 py-0.5 text-[10px] font-bold uppercase bg-harvest-light text-harvest-dark rounded">IA</span>
+          </a>
+          <a href="#smart-weighing" class="hover:text-techgreen transition-colors">SMART-WEIGHING</a>
+          <a href="#smartagro" class="hover:text-techgreen transition-colors">SmartAgro</a>
+          <a href="#servicios" class="hover:text-techgreen transition-colors">Servicios</a>
+          <a href="#respaldo" class="hover:text-techgreen transition-colors">Respaldo Científico</a>
+        </nav>
+
+        <!-- Botón CTA y Menú Móvil -->
+        <div class="flex items-center gap-3">
+          <button
+            type="button"
+            onclick="openDemoModal('General')"
+            class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-techgreen hover:bg-forest text-white font-semibold text-sm shadow-sm hover:shadow-md transition-all cursor-pointer">
+            <span>Solicitar Demo</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </button>
+
+          <!-- Botón Hamburguesa Móvil -->
+          <button
+            id="mobile-menu-btn"
+            type="button"
+            aria-label="Abrir menú de navegación"
+            class="lg:hidden p-2.5 rounded-xl text-forest hover:bg-slate-100 focus:outline-none">
+            <svg id="icon-menu-open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg id="icon-menu-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menú Desplegable Móvil -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-200 px-4 pt-3 pb-6 space-y-2 shadow-lg">
+      <a href="#inicio" onclick="closeMobileMenu()" class="block px-3 py-2.5 rounded-lg font-semibold text-slate-700 hover:bg-slate-50 hover:text-techgreen">Inicio</a>
+      <a href="#inteligencia-artificial" onclick="closeMobileMenu()" class="block px-3 py-2.5 rounded-lg font-semibold text-slate-700 hover:bg-slate-50 hover:text-techgreen">Inteligencia Artificial e IoT</a>
+      <a href="#smart-weighing" onclick="closeMobileMenu()" class="block px-3 py-2.5 rounded-lg font-semibold text-slate-700 hover:bg-slate-50 hover:text-techgreen">SMART-WEIGHING</a>
+      <a href="#smartagro" onclick="closeMobileMenu()" class="block px-3 py-2.5 rounded-lg font-semibold text-slate-700 hover:bg-slate-50 hover:text-techgreen">Plataforma SmartAgro</a>
+      <a href="#servicios" onclick="closeMobileMenu()" class="block px-3 py-2.5 rounded-lg font-semibold text-slate-700 hover:bg-slate-50 hover:text-techgreen">Servicios Especializados</a>
+      <a href="#respaldo" onclick="closeMobileMenu()" class="block px-3 py-2.5 rounded-lg font-semibold text-slate-700 hover:bg-slate-50 hover:text-techgreen">Respaldo Científico y Legal</a>
+      <div class="pt-2">
+        <button
+          type="button"
+          onclick="closeMobileMenu(); openDemoModal('General');"
+          class="w-full py-3 rounded-xl bg-techgreen text-white font-bold text-sm shadow-sm">
+          Solicitar Demo Personalizada
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =====================================================================
+       2. HERO SECTION DE ALTO IMPACTO + DASHBOARD INTERACTIVO SMARTAGRO
+       ===================================================================== -->
+  <section id="inicio" class="relative bg-gradient-to-b from-white via-[#F8FAFC] to-slate-100/80 pt-10 pb-16 lg:pt-16 lg:pb-24 overflow-hidden">
+    <!-- Decoración geométrica sutil de fondo -->
+    <div class="absolute top-0 right-0 -translate-y-12 translate-x-1/4 w-[520px] h-[520px] rounded-full bg-techgreen/5 blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-[420px] h-[420px] rounded-full bg-harvest/10 blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <!-- Columna Izquierda: Mensaje Estratégico -->
+        <div class="lg:col-span-6 space-y-6">
+          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-forest text-white text-xs sm:text-sm font-semibold shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-harvest"></span>
+            <span>Industria 4.0 &bull; Inteligencia Artificial &bull; IoT Agropecuario</span>
+          </div>
+
+          <h1 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-[44px] text-forest leading-[1.14] tracking-tight">
+            Tecnificamos el Campo Mexicano con <span class="text-techgreen">Inteligencia Artificial</span> e Internet de las Cosas
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-600 leading-relaxed">
+            Soluciones integrales de automatización, sensorización y ciencia de datos para maximizar rendimientos, reducir costos y transformar ranchos ganaderos y agrícolas.
+          </p>
+
+          <!-- Botones de Acción -->
+          <div class="flex flex-col sm:flex-row gap-3.5 pt-2">
+            <a
+              href="#smartagro"
+              class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-forest hover:bg-forest-light text-white font-bold text-sm sm:text-base shadow-md hover:shadow-lg transition-all">
+              <span>Explorar Plataforma SmartAgro</span>
+              <svg class="w-4 h-4 text-harvest" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </a>
+
+            <a
+              href="#contacto"
+              class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-harvest-light/40 text-forest border-2 border-forest/20 hover:border-harvest font-bold text-sm sm:text-base transition-all">
+              <svg class="w-4 h-4 text-harvest-dark" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              <span>Agendar Diagnóstico</span>
+            </a>
+          </div>
+
+          <p class="text-xs text-slate-500 flex items-center gap-2 pt-1">
+            <svg class="w-4 h-4 text-techgreen flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>Desarrollado en Zacatecas, México con respaldo académico, científico e industrial.</span>
+          </p>
+        </div>
+
+        <!-- Columna Derecha: Panel Visual Interactivo simulando Dashboard SmartAgro -->
+        <div class="lg:col-span-6">
+          <div class="bg-forest-dark text-white rounded-2xl border border-emerald-800/70 shadow-2xl overflow-hidden">
+            <!-- Barra superior del Dashboard -->
+            <div class="bg-forest px-5 py-3.5 border-b border-emerald-800/80 flex flex-wrap items-center justify-between gap-2">
+              <div class="flex items-center gap-2.5">
+                <div class="flex gap-1.5">
+                  <span class="w-2.5 h-2.5 rounded-full bg-rose-400"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-harvest"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-techgreen-vibrant"></span>
+                </div>
+                <span class="text-xs font-mono text-emerald-200 tracking-wide">smartagro.com.mx &mdash; Panel IoT &amp; IA</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="relative flex h-2.5 w-2.5 live-dot">
+                  <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-techgreen-vibrant"></span>
+                </span>
+                <span class="text-[11px] font-semibold text-techgreen-vibrant uppercase tracking-wider">Telemetría Activa</span>
+              </div>
+            </div>
+
+            <!-- Cuerpo del Dashboard Interactivo -->
+            <div class="p-5 sm:p-6 space-y-5">
+              <!-- Controles interactivos rápidos dentro del dashboard -->
+              <div class="flex flex-wrap items-center justify-between gap-2 pb-1">
+                <span class="text-xs font-medium text-emerald-200/80">Unidad: <strong class="text-white">Rancho Victoria &bull; Lote Norte</strong></span>
+                <button
+                  type="button"
+                  onclick="simulateHeroPulse()"
+                  class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-900/90 hover:bg-techgreen text-xs font-semibold text-emerald-100 hover:text-white border border-emerald-700/70 transition-colors cursor-pointer">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
+                  <span>Simular Lectura en Vivo</span>
+                </button>
+              </div>
+
+              <!-- Tarjetas de métricas en tiempo real -->
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-3.5">
+                <!-- Métrica 1: Ganado -->
+                <div class="bg-forest/90 border border-emerald-800/70 rounded-xl p-3.5">
+                  <div class="flex items-center justify-between text-emerald-300 text-xs mb-1">
+                    <span>Pesaje SMART-WEIGHING</span>
+                    <span class="text-techgreen-vibrant font-bold">+1.38 kg/d</span>
+                  </div>
+                  <div id="hero-cow-weight" class="font-display font-extrabold text-xl sm:text-2xl text-white">486.4 kg</div>
+                  <div id="hero-cow-id" class="text-[11px] text-emerald-200/75 mt-1">Arete RFID #MX-0842 &bull; Óptimo</div>
+                </div>
+
+                <!-- Métrica 2: Humedad Suelo -->
+                <div class="bg-forest/90 border border-emerald-800/70 rounded-xl p-3.5">
+                  <div class="flex items-center justify-between text-emerald-300 text-xs mb-1">
+                    <span>Humedad Suelo</span>
+                    <span class="text-harvest font-bold">IoT Nodo 04</span>
+                  </div>
+                  <div id="hero-soil-moisture" class="font-display font-extrabold text-xl sm:text-2xl text-white">68.2%</div>
+                  <div class="text-[11px] text-emerald-200/75 mt-1">Electroválvula: <span id="hero-valve-state" class="text-techgreen-vibrant font-semibold">En espera</span></div>
+                </div>
+
+                <!-- Métrica 3: pH Agua y Suelo -->
+                <div class="col-span-2 sm:col-span-1 bg-forest/90 border border-emerald-800/70 rounded-xl p-3.5">
+                  <div class="flex items-center justify-between text-emerald-300 text-xs mb-1">
+                    <span>pH Agua / Suelo</span>
+                    <span class="text-techgreen-vibrant font-bold">Balanceado</span>
+                  </div>
+                  <div id="hero-ph-value" class="font-display font-extrabold text-xl sm:text-2xl text-white">6.7 pH</div>
+                  <div class="text-[11px] text-emerald-200/75 mt-1">Nutrientes NPK: <span class="text-white font-medium">94%</span></div>
+                </div>
+              </div>
+
+              <!-- Alerta Predictiva de Inteligencia Artificial -->
+              <div class="bg-gradient-to-r from-amber-500/15 via-emerald-900/60 to-forest border border-harvest/40 rounded-xl p-4">
+                <div class="flex items-start gap-3">
+                  <div class="p-2 rounded-lg bg-harvest/20 text-harvest flex-shrink-0 mt-0.5">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <div class="space-y-1">
+                    <div class="flex flex-wrap items-center gap-2">
+                      <span class="text-xs font-bold uppercase tracking-wider text-harvest">Recomendación Predictiva IA</span>
+                      <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-950 text-emerald-200 border border-emerald-700/60">Regresión Lineal + Visión Artificial</span>
+                    </div>
+                    <p id="hero-ai-alert" class="text-xs sm:text-sm text-emerald-50 leading-relaxed">
+                      Lote Bovino #03 proyecta alcanzar peso objetivo de <strong>520 kg en 24 días</strong>. Se sugiere mantener dieta proteica actual y programar riego nocturno de 18 min en Parcela Sur para ahorrar <strong>22% de agua</strong>.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Barra de Indicadores Clave -->
+      <div class="mt-12 lg:mt-16 grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-white rounded-xl p-4 border border-slate-200/90 shadow-sm flex items-center gap-3.5">
+          <div class="w-10 h-10 rounded-lg bg-techgreen-soft text-techgreen flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
+            </svg>
+          </div>
+          <div>
+            <div class="font-display font-bold text-sm text-forest">100% Empresa Mexicana</div>
+            <div class="text-xs text-slate-500">Ingeniería nacida en Zacatecas</div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-4 border border-slate-200/90 shadow-sm flex items-center gap-3.5">
+          <div class="w-10 h-10 rounded-lg bg-harvest-light text-harvest-dark flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+          </div>
+          <div>
+            <div class="font-display font-bold text-sm text-forest">Marca Registrada IMPI</div>
+            <div class="text-xs text-slate-500">Título oficial No. 2043377</div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-4 border border-slate-200/90 shadow-sm flex items-center gap-3.5">
+          <div class="w-10 h-10 rounded-lg bg-techgreen-soft text-techgreen flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <div>
+            <div class="font-display font-bold text-sm text-forest">Acceso Web y Móvil</div>
+            <div class="text-xs text-slate-500">Control local o en la nube 24/7</div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-4 border border-slate-200/90 shadow-sm flex items-center gap-3.5">
+          <div class="w-10 h-10 rounded-lg bg-harvest-light text-harvest-dark flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div>
+            <div class="font-display font-bold text-sm text-forest">Diseño UX para el Campo</div>
+            <div class="text-xs text-slate-500">Interfaces intuitivas ISO 9241-210</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       3. SECCIÓN DESTACADA: INTELIGENCIA ARTIFICIAL Y CIENCIA DE DATOS
+       ===================================================================== -->
+  <section id="inteligencia-artificial" class="py-20 lg:py-24 bg-forest-dark bg-tech-grid text-white relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Encabezado de Sección -->
+      <div class="max-w-3xl mx-auto text-center space-y-4 reveal">
+        <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-900/90 border border-emerald-700/80 text-harvest text-xs font-bold uppercase tracking-wider">
+          Cerebro Digital Agropecuario
+        </span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white leading-tight">
+          Inteligencia Artificial, Machine Learning y Big Data Aplicados al Campo
+        </h2>
+        <p class="text-emerald-100/80 text-base sm:text-lg leading-relaxed">
+          Transformamos millones de lecturas de sensores e imágenes de campo en decisiones predictivas oportunas para elevar la productividad y proteger la rentabilidad de cada unidad agropecuaria.
+        </p>
+      </div>
+
+      <!-- 4 Pilares Tecnológicos de IA -->
+      <div class="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 reveal">
+        <!-- Pilar 1: Visión Artificial -->
+        <div class="bg-forest/80 backdrop-blur-sm border border-emerald-800/80 hover:border-techgreen-vibrant rounded-2xl p-6 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-techgreen/20 border border-techgreen-vibrant/40 text-techgreen-vibrant flex items-center justify-center mb-5">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+            </div>
+            <h3 class="font-display font-bold text-lg text-white mb-2.5">Visión Artificial</h3>
+            <p class="text-sm text-emerald-100/80 leading-relaxed">
+              Conteo automatizado de animales sin margen de error humano y diagnóstico temprano de plagas, enfermedades, vigor y deficiencias nutricionales mediante análisis inteligente de imágenes.
+            </p>
+          </div>
+          <div class="mt-5 pt-4 border-t border-emerald-800/70 text-xs font-semibold text-techgreen-vibrant">
+            &bull; Procesamiento de Imágenes + Big Data
+          </div>
+        </div>
+
+        <!-- Pilar 2: Modelos Predictivos -->
+        <div class="bg-forest/80 backdrop-blur-sm border border-emerald-800/80 hover:border-harvest rounded-2xl p-6 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-harvest/20 border border-harvest/40 text-harvest flex items-center justify-center mb-5">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
+              </svg>
+            </div>
+            <h3 class="font-display font-bold text-lg text-white mb-2.5">Modelos Predictivos</h3>
+            <p class="text-sm text-emerald-100/80 leading-relaxed">
+              Algoritmos de <strong>Regresión Lineal</strong> y aprendizaje automático para pronosticar ganancia o pérdida de peso en ganado, rendimiento de cosechas, precios y rentabilidad por kilo producido.
+            </p>
+          </div>
+          <div class="mt-5 pt-4 border-t border-emerald-800/70 text-xs font-semibold text-harvest">
+            &bull; Regresión Lineal &amp; Ciencia de Datos
+          </div>
+        </div>
+
+        <!-- Pilar 3: Mantenimiento Predictivo -->
+        <div class="bg-forest/80 backdrop-blur-sm border border-emerald-800/80 hover:border-techgreen-vibrant rounded-2xl p-6 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-techgreen/20 border border-techgreen-vibrant/40 text-techgreen-vibrant flex items-center justify-center mb-5">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <h3 class="font-display font-bold text-lg text-white mb-2.5">Mantenimiento Predictivo</h3>
+            <p class="text-sm text-emerald-100/80 leading-relaxed">
+              Anticipación inteligente de desgaste y fallas en maquinaria agrícola, implementos mecánicos y pozos hidráulicos, evitando paros costosos en temporadas críticas.
+            </p>
+          </div>
+          <div class="mt-5 pt-4 border-t border-emerald-800/70 text-xs font-semibold text-techgreen-vibrant">
+            &bull; Calendarios Asistidos por IA
+          </div>
+        </div>
+
+        <!-- Pilar 4: Automatización Inteligente -->
+        <div class="bg-forest/80 backdrop-blur-sm border border-emerald-800/80 hover:border-harvest rounded-2xl p-6 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-harvest/20 border border-harvest/40 text-harvest flex items-center justify-center mb-5">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+              </svg>
+            </div>
+            <h3 class="font-display font-bold text-lg text-white mb-2.5">Automatización Inteligente</h3>
+            <p class="text-sm text-emerald-100/80 leading-relaxed">
+              Activación autónoma de actuadores para dosificación exacta de alimento animal, control de bebederos y apertura/cierre de electroválvulas de riego según clima y suelo.
+            </p>
+          </div>
+          <div class="mt-5 pt-4 border-t border-emerald-800/70 text-xs font-semibold text-harvest">
+            &bull; Sensores + Actuadores en Tiempo Real
+          </div>
+        </div>
+      </div>
+
+      <!-- =================================================================
+           SIMULADOR INTERACTIVO DE TELEMETRÍA E INTELIGENCIA ARTIFICIAL
+           ================================================================= -->
+      <div class="mt-16 bg-forest border-2 border-emerald-700/80 rounded-3xl p-6 sm:p-8 lg:p-10 shadow-glow-green reveal">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-8 border-b border-emerald-800">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-harvest mb-1">
+              <span>Laboratorio Interactivo AGA</span>
+            </div>
+            <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-white">
+              Simulador en Vivo de Telemetría e Inteligencia Artificial
+            </h3>
+            <p class="text-sm text-emerald-200/80 mt-1">
+              Alterna entre el modo pecuario y agrícola y prueba distintos escenarios operativos para observar cómo responde nuestro motor de IA.
+            </p>
+          </div>
+
+          <!-- Selector de Modo (Ganadería vs Agricultura) -->
+          <div class="inline-flex p-1.5 rounded-2xl bg-forest-dark border border-emerald-800 self-start">
+            <button
+              id="sim-btn-ganaderia"
+              type="button"
+              onclick="setSimulatorMode('ganaderia')"
+              class="px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all bg-techgreen text-white shadow cursor-pointer">
+              Modo Ganadería (SMART-WEIGHING)
+            </button>
+            <button
+              id="sim-btn-agricultura"
+              type="button"
+              onclick="setSimulatorMode('agricultura')"
+              class="px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all text-emerald-200 hover:text-white cursor-pointer">
+              Modo Agricultura (Red Sensores IoT)
+            </button>
+          </div>
+        </div>
+
+        <!-- Controles de Escenario y Lecturas -->
+        <div class="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <!-- Panel Izquierdo: Escenarios Interactivos -->
+          <div class="lg:col-span-4 space-y-4">
+            <label class="block text-xs font-bold uppercase tracking-wider text-emerald-300">
+              1. Selecciona un escenario de campo:
+            </label>
+            <div id="sim-scenarios" class="space-y-2.5">
+              <!-- Botones generados dinámicamente por JS -->
+            </div>
+
+            <div class="pt-2">
+              <button
+                type="button"
+                onclick="randomizeSimulatorReadings()"
+                class="w-full py-3 px-4 rounded-xl bg-emerald-900/90 hover:bg-emerald-800 border border-emerald-700 text-xs sm:text-sm font-semibold text-white flex items-center justify-center gap-2 transition-colors cursor-pointer">
+                <svg class="w-4 h-4 text-harvest" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                <span>Capturar Nueva Muestra de Sensores</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Panel Derecho: Lecturas IoT + Diagnóstico IA -->
+          <div class="lg:col-span-8 space-y-5">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold uppercase tracking-wider text-emerald-300">
+                2. Lecturas de Sensores y Actuadores en Tiempo Real:
+              </span>
+              <span id="sim-timestamp" class="text-xs font-mono text-emerald-400">Actualizado: Ahora</span>
+            </div>
+
+            <!-- Grid de 4 sensores en vivo -->
+            <div id="sim-metrics-grid" class="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
+              <!-- Renderizado dinámico por JS -->
+            </div>
+
+            <!-- Caja de Salida del Modelo Predictivo IA -->
+            <div class="bg-forest-dark border border-harvest/50 rounded-2xl p-5 space-y-3">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <div class="flex items-center gap-2">
+                  <span class="px-2.5 py-0.5 rounded-md bg-harvest text-forest-dark font-extrabold text-xs uppercase">Motor IA AGA</span>
+                  <span id="sim-model-tag" class="text-xs font-semibold text-emerald-300">Modelo: Regresión Lineal + Visión Artificial</span>
+                </div>
+                <span id="sim-action-badge" class="text-xs font-bold px-3 py-1 rounded-full bg-techgreen/20 text-techgreen-vibrant border border-techgreen-vibrant/40">
+                  Acción Automática Ejecutada
+                </span>
+              </div>
+              <p id="sim-ai-recommendation" class="text-sm sm:text-base text-white leading-relaxed">
+                <!-- Recomendación IA dinámica -->
+              </p>
+              <div id="sim-ai-impact" class="text-xs text-harvest font-semibold pt-1">
+                <!-- Impacto económico/operativo -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       4. PRODUCTO INSIGNIA: SMART-WEIGHING
+       ===================================================================== -->
+  <section id="smart-weighing" class="py-20 lg:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Columna Izquierda: Esquema Técnico Interactivo de la Manga -->
+        <div class="lg:col-span-6 reveal">
+          <div class="bg-slate-50 border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-sm">
+            <div class="flex items-center justify-between mb-5">
+              <span class="px-3 py-1 rounded-full bg-forest text-white text-xs font-bold uppercase tracking-wider">
+                Hardware IoT &bull; Acero Inoxidable
+              </span>
+              <span class="text-xs font-semibold text-techgreen">Patente en Trámite &bull; IMPI</span>
+            </div>
+
+            <!-- Ilustración Vectorial Técnica de la Manga SMART-WEIGHING -->
+            <div class="bg-forest-dark rounded-2xl p-5 text-white relative overflow-hidden">
+              <svg viewBox="0 0 500 240" class="w-full h-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Piso / Plataforma de Celdas de Carga -->
+                <rect x="45" y="182" width="410" height="14" rx="4" fill="#16A34A" />
+                <rect x="65" y="196" width="36" height="12" rx="2" fill="#F59E0B" />
+                <rect x="232" y="196" width="36" height="12" rx="2" fill="#F59E0B" />
+                <rect x="399" y="196" width="36" height="12" rx="2" fill="#F59E0B" />
+                <text x="250" y="226" text-anchor="middle" fill="#A7F3D0" font-size="11" font-family="Inter, sans-serif" font-weight="600">Celdas de Carga Industriales de Alta Precisión + Báscula Digital IoT</text>
+
+                <!-- Estructura de la Manga Ganadera -->
+                <rect x="60" y="65" width="380" height="117" rx="8" stroke="#94A3B8" stroke-width="3" stroke-dasharray="6 4" />
+                <!-- Postes verticales -->
+                <line x1="90" y1="60" x2="90" y2="182" stroke="#E2E8F0" stroke-width="6" stroke-linecap="round" />
+                <line x1="200" y1="60" x2="200" y2="182" stroke="#E2E8F0" stroke-width="6" stroke-linecap="round" />
+                <line x1="310" y1="60" x2="310" y2="182" stroke="#E2E8F0" stroke-width="6" stroke-linecap="round" />
+                <line x1="410" y1="60" x2="410" y2="182" stroke="#E2E8F0" stroke-width="6" stroke-linecap="round" />
+                <!-- Barras horizontales -->
+                <line x1="75" y1="95" x2="425" y2="95" stroke="#CBD5E1" stroke-width="4" />
+                <line x1="75" y1="138" x2="425" y2="138" stroke="#CBD5E1" stroke-width="4" />
+
+                <!-- Silueta estilizada de bovino dentro de la manga -->
+                <path d="M 145 148 C 145 118, 175 104, 225 104 L 305 104 C 325 104, 340 90, 355 88 L 372 92 L 368 112 L 350 118 L 348 178 L 334 178 L 332 146 L 200 146 L 196 178 L 182 178 L 180 148 Z" fill="#22C55E" fill-opacity="0.28" stroke="#22C55E" stroke-width="2.5" />
+
+                <!-- Lector RFID superior -->
+                <rect x="330" y="24" width="110" height="30" rx="6" fill="#0A3622" stroke="#F59E0B" stroke-width="2" />
+                <text x="385" y="43" text-anchor="middle" fill="#F59E0B" font-size="11" font-family="Inter, sans-serif" font-weight="700">Lector RFID + IA</text>
+                <path d="M 375 56 Q 365 72 358 84" stroke="#F59E0B" stroke-width="2" stroke-dasharray="3 3" />
+
+                <!-- Gateway Nube -->
+                <rect x="60" y="24" width="130" height="30" rx="6" fill="#0A3622" stroke="#22C55E" stroke-width="2" />
+                <text x="125" y="43" text-anchor="middle" fill="#22C55E" font-size="11" font-family="Inter, sans-serif" font-weight="700">Sync App &amp; Nube</text>
+              </svg>
+            </div>
+
+            <!-- Caso de Éxito Destacado: Rancho Victoria -->
+            <div class="mt-6 bg-harvest-light/60 border border-harvest/40 rounded-2xl p-5">
+              <div class="flex items-start gap-3.5">
+                <div class="w-10 h-10 rounded-xl bg-harvest text-forest-dark flex items-center justify-center flex-shrink-0 font-display font-extrabold">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                  </svg>
+                </div>
+                <div>
+                  <span class="text-xs font-extrabold uppercase tracking-wider text-harvest-dark">Caso de Éxito Validado en Campo</span>
+                  <h4 class="font-display font-bold text-base text-forest mt-0.5">Implementación en Rancho Victoria &mdash; Bañón, Villa de Cos, Zacatecas</h4>
+                  <p class="text-xs sm:text-sm text-slate-700 mt-1 leading-relaxed">
+                    Operación real validada en hato comercial, optimizando los tiempos de pesaje individual, trazabilidad histórica y toma de decisiones nutricionales desde dispositivos móviles.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Columna Derecha: Descripción y Beneficios -->
+        <div class="lg:col-span-6 space-y-6 reveal">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-techgreen-soft text-forest text-xs font-bold uppercase tracking-wider">
+            Producto Insignia Pecuario
+          </div>
+          <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-forest leading-tight">
+            SMART-WEIGHING: Manga de Manejo Ganadero Automatizada
+          </h2>
+          <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
+            Diseñada para hatos bovinos y ovinos, nuestra manga automatizada integra sensores de pesaje de alta precisión, identificación electrónica y conectividad IoT para eliminar el registro manual y agilizar el manejo en corral.
+          </p>
+
+          <!-- Lista de Beneficios -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
+              <div class="w-9 h-9 rounded-lg bg-forest text-white flex items-center justify-center mb-3">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+                </svg>
+              </div>
+              <h3 class="font-display font-bold text-sm text-forest">Pesaje Individual y Global</h3>
+              <p class="text-xs text-slate-600 mt-1 leading-relaxed">Captura instantánea por cabeza y cálculo automático del peso total del lote en tiempo real.</p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
+              <div class="w-9 h-9 rounded-lg bg-techgreen text-white flex items-center justify-center mb-3">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                </svg>
+              </div>
+              <h3 class="font-display font-bold text-sm text-forest">Sincronización App y Web</h3>
+              <p class="text-xs text-slate-600 mt-1 leading-relaxed">Consulta inmediata desde cualquier smartphone, tableta o computadora conectada a Internet.</p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
+              <div class="w-9 h-9 rounded-lg bg-harvest text-forest-dark flex items-center justify-center mb-3">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 class="font-display font-bold text-sm text-forest">Dietas y Prevención Sanitaria</h3>
+              <p class="text-xs text-slate-600 mt-1 leading-relaxed">Detección temprana de pérdida de peso para adecuar dietas y prevenir enfermedades o decesos.</p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
+              <div class="w-9 h-9 rounded-lg bg-forest text-white flex items-center justify-center mb-3">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 class="font-display font-bold text-sm text-forest">Menor Estrés y Mayor Rapidez</h3>
+              <p class="text-xs text-slate-600 mt-1 leading-relaxed">Flujo ágil que reduce el estrés térmico/físico del animal y ahorra horas-hombre en cada jornada.</p>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <button
+              type="button"
+              onclick="openDemoModal('Ganadería (SMART-WEIGHING)')"
+              class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-techgreen hover:bg-forest text-white font-bold text-sm shadow-sm transition-all cursor-pointer">
+              <span>Cotizar SMART-WEIGHING para mi Rancho</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       5. PLATAFORMA DIGITAL INTEGRAL: SMARTAGRO (6 MÓDULOS INTERACTIVOS)
+       ===================================================================== -->
+  <section id="smartagro" class="py-20 lg:py-24 bg-[#F8FAFC] border-y border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center space-y-4 reveal">
+        <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-forest text-harvest text-xs font-bold uppercase tracking-wider">
+          Ecosistema Software &bull; smartagro.com.mx
+        </span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-forest leading-tight">
+          Plataforma Digital Integral SmartAgro
+        </h2>
+        <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
+          Un sistema web modular, escalable y libre de altos costos de licenciamiento. Opera de forma local o en servidor en la nube y conecta toda la operación de tu agroempresa en un solo lugar.
+        </p>
+      </div>
+
+      <!-- Navegación por Pestañas (Tabs) de los 6 Módulos -->
+      <div class="mt-12 reveal">
+        <div role="tablist" aria-label="Módulos de SmartAgro" class="flex overflow-x-auto no-scrollbar gap-2.5 pb-3 justify-start lg:justify-center">
+          <button type="button" role="tab" id="tab-btn-0" onclick="selectSmartAgroTab(0)" class="smartagro-tab flex-shrink-0 px-4 py-3 rounded-xl font-display font-bold text-xs sm:text-sm bg-forest text-white shadow-md transition-all cursor-pointer">
+            1. Ganado
+          </button>
+          <button type="button" role="tab" id="tab-btn-1" onclick="selectSmartAgroTab(1)" class="smartagro-tab flex-shrink-0 px-4 py-3 rounded-xl font-display font-bold text-xs sm:text-sm bg-white text-slate-700 border border-slate-200 hover:border-techgreen transition-all cursor-pointer">
+            2. Cultivos y Sensores IoT
+          </button>
+          <button type="button" role="tab" id="tab-btn-2" onclick="selectSmartAgroTab(2)" class="smartagro-tab flex-shrink-0 px-4 py-3 rounded-xl font-display font-bold text-xs sm:text-sm bg-white text-slate-700 border border-slate-200 hover:border-techgreen transition-all cursor-pointer">
+            3. Analítico e IA
+          </button>
+          <button type="button" role="tab" id="tab-btn-3" onclick="selectSmartAgroTab(3)" class="smartagro-tab flex-shrink-0 px-4 py-3 rounded-xl font-display font-bold text-xs sm:text-sm bg-white text-slate-700 border border-slate-200 hover:border-techgreen transition-all cursor-pointer">
+            4. Inventarios y Mantenimiento
+          </button>
+          <button type="button" role="tab" id="tab-btn-4" onclick="selectSmartAgroTab(4)" class="smartagro-tab flex-shrink-0 px-4 py-3 rounded-xl font-display font-bold text-xs sm:text-sm bg-white text-slate-700 border border-slate-200 hover:border-techgreen transition-all cursor-pointer">
+            5. Recursos Humanos (RRHH)
+          </button>
+          <button type="button" role="tab" id="tab-btn-5" onclick="selectSmartAgroTab(5)" class="smartagro-tab flex-shrink-0 px-4 py-3 rounded-xl font-display font-bold text-xs sm:text-sm bg-white text-slate-700 border border-slate-200 hover:border-techgreen transition-all cursor-pointer">
+            6. Control y Perfiles UX
+          </button>
+        </div>
+
+        <!-- Contenedor Dinámico del Módulo Activo -->
+        <div id="smartagro-panel" class="mt-6 bg-white rounded-3xl border border-slate-200 shadow-lg p-6 sm:p-8 lg:p-10 transition-all">
+          <!-- Contenido renderizado por JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       6. PORTAFOLIO DE SERVICIOS ESPECIALIZADOS
+       ===================================================================== -->
+  <section id="servicios" class="py-20 lg:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center space-y-4 reveal">
+        <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-harvest-light text-harvest-dark text-xs font-bold uppercase tracking-wider">
+          Soluciones Llave en Mano
+        </span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-forest leading-tight">
+          Portafolio de Servicios Especializados
+        </h2>
+        <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
+          Acompañamos a productores, ranchos y MiPyMEs agroindustriales desde el diagnóstico inicial hasta la puesta en marcha y capacitación de su personal.
+        </p>
+      </div>
+
+      <div class="mt-14 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 reveal">
+        <!-- Servicio 1 -->
+        <div class="group p-7 rounded-2xl bg-[#F8FAFC] hover:bg-forest border border-slate-200 hover:border-forest transition-all duration-300">
+          <div class="w-12 h-12 rounded-xl bg-techgreen text-white flex items-center justify-center mb-5 shadow-sm">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <h3 class="font-display font-bold text-xl text-forest group-hover:text-white transition-colors">
+            Automatización de Procesos Controlados desde App
+          </h3>
+          <p class="text-sm text-slate-600 group-hover:text-emerald-100/85 mt-2.5 leading-relaxed transition-colors">
+            Diseño, fabricación e integración de sistemas mecatrónicos y actuadores para pesaje pecuario, dosificación de alimento, apertura de bebederos y control remoto de riego agrícola desde cualquier dispositivo móvil.
+          </p>
+        </div>
+
+        <!-- Servicio 2 -->
+        <div class="group p-7 rounded-2xl bg-[#F8FAFC] hover:bg-forest border border-slate-200 hover:border-forest transition-all duration-300">
+          <div class="w-12 h-12 rounded-xl bg-harvest text-forest-dark flex items-center justify-center mb-5 shadow-sm">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.14 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
+            </svg>
+          </div>
+          <h3 class="font-display font-bold text-xl text-forest group-hover:text-white transition-colors">
+            Redes Inalámbricas de Sensores IoT
+          </h3>
+          <p class="text-sm text-slate-600 group-hover:text-emerald-100/85 mt-2.5 leading-relaxed transition-colors">
+            Despliegue de nodos inalámbricos de telemetría para Agricultura y Ganadería de Precisión, monitoreando en tiempo real humedad, temperatura, aire, nutrientes, pH de agua/suelo y detección temprana de plagas.
+          </p>
+        </div>
+
+        <!-- Servicio 3 -->
+        <div class="group p-7 rounded-2xl bg-[#F8FAFC] hover:bg-forest border border-slate-200 hover:border-forest transition-all duration-300">
+          <div class="w-12 h-12 rounded-xl bg-forest group-hover:bg-techgreen text-white flex items-center justify-center mb-5 shadow-sm transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+            </svg>
+          </div>
+          <h3 class="font-display font-bold text-xl text-forest group-hover:text-white transition-colors">
+            Software Administrativo y Ciencia de Datos a la Medida
+          </h3>
+          <p class="text-sm text-slate-600 group-hover:text-emerald-100/85 mt-2.5 leading-relaxed transition-colors">
+            Desarrollo de plataformas empresariales, módulos de costeo por kilogramo producido, control de inventarios y analítica predictiva con Inteligencia Artificial adaptados a la escala exacta de tu negocio.
+          </p>
+        </div>
+
+        <!-- Servicio 4 -->
+        <div class="group p-7 rounded-2xl bg-[#F8FAFC] hover:bg-forest border border-slate-200 hover:border-forest transition-all duration-300">
+          <div class="w-12 h-12 rounded-xl bg-techgreen text-white flex items-center justify-center mb-5 shadow-sm">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+          </div>
+          <h3 class="font-display font-bold text-xl text-forest group-hover:text-white transition-colors">
+            Consultoría y Capacitación Agroindustria 4.0
+          </h3>
+          <p class="text-sm text-slate-600 group-hover:text-emerald-100/85 mt-2.5 leading-relaxed transition-colors">
+            Diagnóstico integral de infraestructura y procesos, evaluación de desempeño de maquinaria, transferencia tecnológica y capacitación práctica diseñada para trabajadores y administradores del campo.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       7. RESPALDO INSTITUCIONAL, LEGAL Y CIENTÍFICO
+       ===================================================================== -->
+  <section id="respaldo" class="py-20 lg:py-24 bg-forest-dark text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center space-y-4 reveal">
+        <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-900 border border-emerald-700 text-harvest text-xs font-bold uppercase tracking-wider">
+          Solidez Jurídica y Rigor Científico
+        </span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white leading-tight">
+          Respaldo Institucional, Legal y Científico
+        </h2>
+        <p class="text-emerald-100/80 text-base sm:text-lg leading-relaxed">
+          Nuestras soluciones combinan propiedad industrial protegida, alianzas estratégicas y validación científica publicada en foros internacionales.
+        </p>
+      </div>
+
+      <!-- Tarjetas de Respaldo -->
+      <div class="mt-14 grid grid-cols-1 lg:grid-cols-3 gap-6 reveal">
+        <!-- Bloque 1: Propiedad Industrial y Marco Legal -->
+        <div class="bg-forest border border-emerald-800 rounded-2xl p-6 sm:p-7 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-xl bg-harvest/20 text-harvest flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <h3 class="font-display font-bold text-lg text-white">Propiedad Industrial y Constitución</h3>
+          </div>
+          <ul class="space-y-3 text-sm text-emerald-100/85">
+            <li class="flex items-start gap-2.5">
+              <span class="text-harvest font-bold mt-0.5">&bull;</span>
+              <span><strong>Registro de Marca IMPI No. 2043377 (Clase 7):</strong> Protección oficial para maquinaria, herramientas mecánicas e instrumentos agrícolas automatizados.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-harvest font-bold mt-0.5">&bull;</span>
+              <span><strong>Sociedad Mercantil Constituida:</strong> AGA Automatizaciones Ganaderas y Agrícolas, S.A.P.I. de C.V., debidamente inscrita ante el Registro Público de Comercio.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-harvest font-bold mt-0.5">&bull;</span>
+              <span><strong>Estándares Internacionales de Ingeniería:</strong> Desarrollo bajo normas <strong>ISO 9241-210</strong> (Diseño Centrado en el Usuario), <strong>ISO 29110</strong> e <strong>IEEE 830</strong>.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Bloque 2: Vinculación e Impacto Nacional -->
+        <div class="bg-forest border border-emerald-800 rounded-2xl p-6 sm:p-7 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-xl bg-techgreen/20 text-techgreen-vibrant flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+            </div>
+            <h3 class="font-display font-bold text-lg text-white">Vinculación e Impacto Estratégico</h3>
+          </div>
+          <ul class="space-y-3 text-sm text-emerald-100/85">
+            <li class="flex items-start gap-2.5">
+              <span class="text-techgreen-vibrant font-bold mt-0.5">&bull;</span>
+              <span><strong>Alianzas Institucionales:</strong> Vinculación con la <strong>Universidad Tecnológica del Estado de Zacatecas (UTZAC)</strong>, el <strong>COZCyT</strong> (Quantum Ciudad del Conocimiento) y <strong>Rancho Victoria</strong>.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-techgreen-vibrant font-bold mt-0.5">&bull;</span>
+              <span><strong>Soberanía Alimentaria (SECIHTI):</strong> Alineados con los Programas Nacionales Estratégicos para impulsar la autosuficiencia alimentaria, la sustentabilidad hídrica y la soberanía tecnológica de México.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Bloque 3: Producción Científica Arbitrada -->
+        <div class="bg-forest border border-emerald-800 rounded-2xl p-6 sm:p-7 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-xl bg-harvest/20 text-harvest flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            </div>
+            <h3 class="font-display font-bold text-lg text-white">Publicaciones y Divulgación</h3>
+          </div>
+          <ul class="space-y-3 text-sm text-emerald-100/85">
+            <li class="flex items-start gap-2.5">
+              <span class="text-harvest font-bold mt-0.5">&bull;</span>
+              <span><strong>HCI-COLLAB 2022 (CEUR-WS):</strong> <em>"Prototype User Interface for an Automatic Sheep Weighing Control System"</em> (ISO 9241-210, ISO 29110, IEEE 830).</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-harvest font-bold mt-0.5">&bull;</span>
+              <span><strong>Revista Progmat (UAEM) &amp; Revista Politécnica de Aguascalientes:</strong> Artículos arbitrados sobre automatización del pesaje animal con IoT.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-harvest font-bold mt-0.5">&bull;</span>
+              <span><strong>Conferencia "Smart Agriculture":</strong> Encuentro de Centros de Investigación Públicos y Privados (Quantum COZCyT).</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       8. EQUIPO DIRECTIVO Y CONTACTO / SOLICITUD DE DEMO
+       ===================================================================== -->
+  <section id="contacto" class="py-20 lg:py-24 bg-[#F8FAFC]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Equipo Fundador -->
+      <div class="max-w-3xl mx-auto text-center space-y-3 reveal">
+        <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-techgreen-soft text-forest text-xs font-bold uppercase tracking-wider">
+          Liderazgo Académico y Empresarial
+        </span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-forest">
+          Equipo Directivo Fundador
+        </h2>
+        <p class="text-slate-600 text-base">
+          Docentes investigadores y especialistas en tecnologías de información, automatización e ingeniería agroindustrial.
+        </p>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 reveal">
+        <!-- CEO -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex items-center gap-4">
+          <div class="w-14 h-14 rounded-2xl bg-forest text-harvest font-display font-extrabold text-lg flex items-center justify-center flex-shrink-0">
+            LZ
+          </div>
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-techgreen">CEO &bull; Director General</span>
+            <h3 class="font-display font-bold text-base text-forest mt-0.5">Mtro. Luis Miguel Zapata Alvarado</h3>
+            <p class="text-xs text-slate-500 mt-0.5">Presidente del Consejo &bull; Especialista en TI e Industria 4.0</p>
+          </div>
+        </div>
+
+        <!-- COO -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex items-center gap-4">
+          <div class="w-14 h-14 rounded-2xl bg-forest text-techgreen-vibrant font-display font-extrabold text-lg flex items-center justify-center flex-shrink-0">
+            FH
+          </div>
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-techgreen">COO &bull; Director Operativo</span>
+            <h3 class="font-display font-bold text-base text-forest mt-0.5">Mtro. José Francisco Hernández Serrano</h3>
+            <p class="text-xs text-slate-500 mt-0.5">Tesorero &bull; Gestión de Proyectos Agroindustriales</p>
+          </div>
+        </div>
+
+        <!-- CTO -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex items-center gap-4">
+          <div class="w-14 h-14 rounded-2xl bg-forest text-harvest font-display font-extrabold text-lg flex items-center justify-center flex-shrink-0">
+            OL
+          </div>
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-techgreen">CTO &bull; Director Tecnológico</span>
+            <h3 class="font-display font-bold text-base text-forest mt-0.5">ISC. Omar Emmanuel Lara Juárez</h3>
+            <p class="text-xs text-slate-500 mt-0.5">Secretario &bull; Arquitectura IoT, Software e IA</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bloque de Contacto y Formulario Funcional -->
+      <div class="mt-16 bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 reveal">
+        <!-- Información Corporativa (5 cols) -->
+        <div class="lg:col-span-5 bg-forest text-white p-8 sm:p-10 flex flex-col justify-between">
+          <div class="space-y-6">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-harvest">Contacto Directo</span>
+              <h3 class="font-display font-extrabold text-2xl sm:text-3xl mt-1">
+                Lleva la Inteligencia Artificial a tu Rancho o Cultivo
+              </h3>
+              <p class="text-sm text-emerald-100/80 mt-2 leading-relaxed">
+                Agenda una demostración personalizada de <strong>SmartAgro</strong> o solicita una evaluación técnica para implementar <strong>SMART-WEIGHING</strong> y redes de sensores IoT.
+              </p>
+            </div>
+
+            <div class="space-y-4 pt-2 text-sm">
+              <div class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-harvest flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <div>
+                  <div class="font-bold text-white">Sede Corporativa</div>
+                  <div class="text-emerald-100/80">Andes Núm. Ext. 31, Fracc. La Cima, Guadalupe, Zacatecas, C.P. 98610, México.</div>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-techgreen-vibrant flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                </svg>
+                <div>
+                  <div class="font-bold text-white">Plataforma Digital</div>
+                  <a href="https://smartagro.com.mx/" target="_blank" rel="noopener noreferrer" class="text-techgreen-vibrant hover:underline font-medium">
+                    https://smartagro.com.mx/
+                  </a>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-harvest flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <div>
+                  <div class="font-bold text-white">Razón Social</div>
+                  <div class="text-emerald-100/80">AGA Automatizaciones Ganaderas y Agrícolas, S.A.P.I. de C.V.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-emerald-800 text-xs text-emerald-200/75">
+            Atención a productores ganaderos, agrícolas, agroindustrias e instituciones de investigación en todo México.
+          </div>
+        </div>
+
+        <!-- Formulario Interactivo (7 cols) -->
+        <div class="lg:col-span-7 p-8 sm:p-10">
+          <form id="demo-form" onsubmit="handleFormSubmit(event, 'main')" class="space-y-5">
+            <div>
+              <h4 class="font-display font-bold text-xl text-forest">Solicitar Cotización o Demostración</h4>
+              <p class="text-xs sm:text-sm text-slate-500 mt-1">Completa tus datos y un especialista de AGA te contactará a la brevedad.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="main-name" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Nombre Completo *</label>
+                <input type="text" id="main-name" required placeholder="Ej. Ing. Carlos Mendoza" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-techgreen focus:ring-2 focus:ring-techgreen/20 outline-none text-sm" />
+              </div>
+              <div>
+                <label for="main-company" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Rancho / Agroempresa *</label>
+                <input type="text" id="main-company" required placeholder="Ej. Agropecuaria El Roble" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-techgreen focus:ring-2 focus:ring-techgreen/20 outline-none text-sm" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="main-email" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Correo Electrónico *</label>
+                <input type="email" id="main-email" required placeholder="correo@empresa.com" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-techgreen focus:ring-2 focus:ring-techgreen/20 outline-none text-sm" />
+              </div>
+              <div>
+                <label for="main-phone" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Teléfono / WhatsApp *</label>
+                <input type="tel" id="main-phone" required placeholder="Ej. 492 123 4567" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-techgreen focus:ring-2 focus:ring-techgreen/20 outline-none text-sm" />
+              </div>
+            </div>
+
+            <div>
+              <label for="main-interest" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Área de Interés Principal *</label>
+              <select id="main-interest" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-techgreen focus:ring-2 focus:ring-techgreen/20 outline-none text-sm bg-white">
+                <option value="Ganadería (SMART-WEIGHING y Manejo de Hato)">Ganadería (SMART-WEIGHING y Manejo de Hato)</option>
+                <option value="Agricultura (Redes de Sensores IoT y Riego Automatizado)">Agricultura (Redes de Sensores IoT y Riego Automatizado)</option>
+                <option value="Ambos (Solución Integral Agropecuaria)">Ambos (Solución Integral Agropecuaria)</option>
+                <option value="Software SmartAgro e Inteligencia Artificial a la Medida">Software SmartAgro e Inteligencia Artificial a la Medida</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="main-notes" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Detalles de tu Operación (Opcional)</label>
+              <textarea id="main-notes" rows="3" placeholder="Cuéntanos brevemente sobre tus cabezas de ganado, hectáreas de cultivo o necesidades de automatización..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-techgreen focus:ring-2 focus:ring-techgreen/20 outline-none text-sm"></textarea>
+            </div>
+
+            <button type="submit" class="w-full py-3.5 px-6 rounded-xl bg-techgreen hover:bg-forest text-white font-bold text-sm sm:text-base shadow-md transition-all cursor-pointer">
+              Enviar Solicitud de Demostración
+            </button>
+          </form>
+
+          <!-- Mensaje de Confirmación al Enviar -->
+          <div id="main-confirmation" class="hidden py-8 text-center space-y-4">
+            <div class="w-16 h-16 rounded-2xl bg-techgreen-soft text-techgreen flex items-center justify-center mx-auto">
+              <svg class="w-9 h-9" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h4 class="font-display font-extrabold text-2xl text-forest">¡Solicitud Recibida con Éxito!</h4>
+            <p id="main-confirmation-text" class="text-sm text-slate-600 max-w-md mx-auto leading-relaxed"></p>
+            <div class="inline-block px-4 py-2 rounded-lg bg-slate-100 text-xs font-mono text-forest font-bold" id="main-ticket"></div>
+            <div class="pt-2">
+              <button type="button" onclick="resetForm('main')" class="px-5 py-2.5 rounded-xl border border-slate-300 hover:border-forest text-xs font-bold text-forest transition-colors cursor-pointer">
+                Enviar otra consulta
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       FOOTER CORPORATIVO
+       ===================================================================== -->
+  <footer class="bg-forest-dark text-emerald-200/80 border-t border-emerald-900 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="text-center md:text-left">
+        <div class="font-display font-extrabold text-white text-lg">
+          AGA Automatizaciones Ganaderas y Agrícolas, S.A.P.I. de C.V.
+        </div>
+        <p class="text-xs text-emerald-300/75 mt-1">
+          Guadalupe, Zacatecas, México &bull; Marca Registrada IMPI #2043377 &bull; Industria 4.0 Agropecuaria
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-6 text-xs font-semibold">
+        <a href="#inicio" class="hover:text-white transition-colors">Inicio</a>
+        <a href="#inteligencia-artificial" class="hover:text-white transition-colors">IA &amp; Datos</a>
+        <a href="#smart-weighing" class="hover:text-white transition-colors">SMART-WEIGHING</a>
+        <a href="#smartagro" class="hover:text-white transition-colors">SmartAgro</a>
+        <a href="https://smartagro.com.mx/" target="_blank" rel="noopener noreferrer" class="text-harvest hover:underline">smartagro.com.mx</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =====================================================================
+       MODAL INTERACTIVO DE SOLICITUD DE DEMO
+       ===================================================================== -->
+  <div id="demo-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-forest-dark/75 backdrop-blur-sm">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-200 relative animate-fadeIn">
+      <button
+        type="button"
+        onclick="closeDemoModal()"
+        aria-label="Cerrar modal"
+        class="absolute top-5 right-5 p-2 rounded-xl text-slate-400 hover:text-forest hover:bg-slate-100 transition-colors cursor-pointer">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <form id="modal-form" onsubmit="handleFormSubmit(event, 'modal')" class="space-y-4">
+        <div>
+          <span class="inline-block px-3 py-0.5 rounded-full bg-techgreen-soft text-forest text-[11px] font-bold uppercase tracking-wider">
+            Demo en Vivo &bull; SmartAgro &amp; IoT
+          </span>
+          <h3 class="font-display font-extrabold text-2xl text-forest mt-1.5">Agenda tu Demostración</h3>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1">Conoce cómo AGA optimiza costos y rendimientos en tu operación.</p>
+        </div>
+
+        <div>
+          <label for="modal-name" class="block text-xs font-bold uppercase text-slate-700 mb-1">Nombre Completo *</label>
+          <input type="text" id="modal-name" required placeholder="Tu nombre" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-techgreen outline-none text-sm" />
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="modal-email" class="block text-xs font-bold uppercase text-slate-700 mb-1">Correo *</label>
+            <input type="email" id="modal-email" required placeholder="correo@ejemplo.com" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-techgreen outline-none text-sm" />
+          </div>
+          <div>
+            <label for="modal-phone" class="block text-xs font-bold uppercase text-slate-700 mb-1">Teléfono *</label>
+            <input type="tel" id="modal-phone" required placeholder="492 000 0000" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-techgreen outline-none text-sm" />
+          </div>
+        </div>
+
+        <div>
+          <label for="modal-interest" class="block text-xs font-bold uppercase text-slate-700 mb-1">Solución de Interés *</label>
+          <select id="modal-interest" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-techgreen outline-none text-sm bg-white">
+            <option value="Ganadería (SMART-WEIGHING)">Ganadería (SMART-WEIGHING)</option>
+            <option value="Agricultura (Sensores IoT y Riego)">Agricultura (Sensores IoT y Riego)</option>
+            <option value="Ambos (Plataforma Integral SmartAgro)">Ambos (Plataforma Integral SmartAgro)</option>
+            <option value="Software / Ciencia de Datos e IA">Software / Ciencia de Datos e IA</option>
+          </select>
+        </div>
+
+        <button type="submit" class="w-full py-3 rounded-xl bg-techgreen hover:bg-forest text-white font-bold text-sm shadow-md transition-all cursor-pointer">
+          Confirmar Solicitud de Demo
+        </button>
+      </form>
+
+      <div id="modal-confirmation" class="hidden py-6 text-center space-y-3">
+        <div class="w-14 h-14 rounded-2xl bg-techgreen-soft text-techgreen flex items-center justify-center mx-auto">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h4 class="font-display font-extrabold text-xl text-forest">¡Demostración Agendada!</h4>
+        <p id="modal-confirmation-text" class="text-xs sm:text-sm text-slate-600 leading-relaxed"></p>
+        <div id="modal-ticket" class="inline-block px-3 py-1.5 rounded-lg bg-slate-100 text-xs font-mono font-bold text-forest"></div>
+        <div class="pt-2">
+          <button type="button" onclick="closeDemoModal()" class="px-5 py-2.5 rounded-xl bg-forest text-white text-xs font-bold cursor-pointer">
+            Volver a la Página
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       JAVASCRIPT INTERACTIVO (SIMULADORES, TABS, FORMULARIOS Y ANIMACIONES)
+       ===================================================================== -->
+  <script>
+    // -----------------------------------------------------------------------
+    // 1. MENÚ MÓVIL Y MODAL DE DEMOSTRACIÓN
+    // -----------------------------------------------------------------------
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const iconOpen = document.getElementById('icon-menu-open');
+    const iconClose = document.getElementById('icon-menu-close');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden', !isHidden);
+      iconOpen.classList.toggle('hidden', isHidden);
+      iconClose.classList.toggle('hidden', !isHidden);
+    });
+
+    function closeMobileMenu() {
+      mobileMenu.classList.add('hidden');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    }
+
+    function openDemoModal(preselect) {
+      const modal = document.getElementById('demo-modal');
+      resetForm('modal');
+      if (preselect && preselect !== 'General') {
+        const select = document.getElementById('modal-interest');
+        for (let i = 0; i < select.options.length; i++) {
+          if (select.options[i].value.includes(preselect.split(' ')[0])) {
+            select.selectedIndex = i;
+            break;
+          }
+        }
+      }
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeDemoModal() {
+      const modal = document.getElementById('demo-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // -----------------------------------------------------------------------
+    // 2. SIMULACIÓN DE LECTURA EN VIVO EN EL DASHBOARD DEL HERO
+    // -----------------------------------------------------------------------
+    const heroSampleData = [
+      {
+        weight: '486.4 kg',
+        id: 'Arete RFID #MX-0842 • Óptimo',
+        moisture: '68.2%',
+        valve: 'En espera',
+        ph: '6.7 pH',
+        alert: 'Lote Bovino #03 proyecta alcanzar peso objetivo de <strong>520 kg en 24 días</strong>. Se sugiere mantener dieta proteica actual y programar riego nocturno de 18 min en Parcela Sur para ahorrar <strong>22% de agua</strong>.'
+      },
+      {
+        weight: '512.8 kg',
+        id: 'Arete RFID #MX-0915 • Listo Venta',
+        moisture: '54.0%',
+        valve: 'Activa (Riego)',
+        ph: '6.5 pH',
+        alert: '<strong>Visión Artificial:</strong> Conteo confirmado de 148 cabezas en corral 2. Electroválvulas de Lote Alfalfa abiertas automáticamente por descenso de humedad bajo umbral del 55%.'
+      },
+      {
+        weight: '441.2 kg',
+        id: 'Arete RFID #MX-0764 • Ajuste Dieta',
+        moisture: '72.5%',
+        valve: 'Cerrada',
+        ph: '6.9 pH',
+        alert: '<strong>Alerta Preventiva IA:</strong> Ganancia diaria de peso 8% menor al promedio en ejemplar #MX-0764. Se recomienda revisión sanitaria preventiva y refuerzo mineral en comedero automatizado.'
+      }
+    ];
+    let heroSampleIndex = 0;
+
+    function simulateHeroPulse() {
+      heroSampleIndex = (heroSampleIndex + 1) % heroSampleData.length;
+      const sample = heroSampleData[heroSampleIndex];
+      document.getElementById('hero-cow-weight').textContent = sample.weight;
+      document.getElementById('hero-cow-id').textContent = sample.id;
+      document.getElementById('hero-soil-moisture').textContent = sample.moisture;
+      document.getElementById('hero-valve-state').textContent = sample.valve;
+      document.getElementById('hero-ph-value').textContent = sample.ph;
+      document.getElementById('hero-ai-alert').innerHTML = sample.alert;
+    }
+
+    // -----------------------------------------------------------------------
+    // 3. SIMULADOR INTERACTIVO DE TELEMETRÍA E IA (SECCIÓN 3)
+    // -----------------------------------------------------------------------
+    const simulatorData = {
+      ganaderia: {
+        modelTag: 'Modelo: Regresión Lineal de Engorda + Visión Artificial',
+        scenarios: [
+          {
+            title: 'Engorda Óptima en Corral',
+            subtitle: 'Seguimiento diario con SMART-WEIGHING',
+            badge: 'Dosificación Automática Activa',
+            metrics: [
+              { label: 'Peso Promedio Lote', value: '492.5 kg', status: '+1.42 kg/día', good: true },
+              { label: 'Conteo Visión Artificial', value: '184 cab.', status: '100% Verificado', good: true },
+              { label: 'Consumo Agua Bebederos', value: '42.8 L/cab', status: 'Nivel Óptimo', good: true },
+              { label: 'Temperatura Corporal / Corral', value: '24.6 °C', status: 'Sin Estrés Térmico', good: true }
+            ],
+            recommendation: 'El modelo de regresión lineal proyecta que el 86% del lote alcanzará el peso comercial óptimo en 19 días. El sistema ajustó automáticamente los dosificadores de alimento balanceado para maximizar la conversión alimenticia.',
+            impact: 'Impacto estimado: +14.5% en margen neto por kilogramo producido y cero mermas por pesaje manual.'
+          },
+          {
+            title: 'Detección Temprana de Baja Ganancia',
+            subtitle: 'Alerta sanitaria y ajuste nutricional',
+            badge: 'Alerta Preventiva Emitida',
+            metrics: [
+              { label: 'Ejemplar Arete #0419', value: '388.0 kg', status: '-0.3 kg vs curva', good: false },
+              { label: 'Conteo Visión Artificial', value: '184 cab.', status: '1 aislado detectado', good: false },
+              { label: 'Apertura Bebederos', value: 'Automática', status: 'Flujo normal', good: true },
+              { label: 'Índice Salud Hato', value: '96.2%', status: 'Atención focalizada', good: true }
+            ],
+            recommendation: 'La IA detectó una desaceleración en la curva de peso del ejemplar #0419 combinada con menor actividad en cámara de corral. Se notificó al médico veterinario en la App para revisión preventiva antes de presentar síntomas clínicos.',
+            impact: 'Impacto estimado: Prevención oportuna de enfermedades y reducción de hasta 90% en riesgo de decesos.'
+          }
+        ]
+      },
+      agricultura: {
+        modelTag: 'Modelo: Predicción Hídrica IoT + Diagnóstico de Vigor',
+        scenarios: [
+          {
+            title: 'Riego de Precisión Automatizado',
+            subtitle: 'Control de electroválvulas y flujómetros',
+            badge: 'Electroválvulas Sincronizadas',
+            metrics: [
+              { label: 'Humedad del Suelo', value: '64.5%', status: 'Rango Ideal', good: true },
+              { label: 'pH Agua y Suelo', value: '6.6 pH', status: 'Nutrición Óptima', good: true },
+              { label: 'Caudal Flujómetro Pozo 1', value: '18.4 L/s', status: 'Presión Estable', good: true },
+              { label: 'Humedad Relativa / Aire', value: '52% / 23°C', status: 'Clima Favorable', good: true }
+            ],
+            recommendation: 'Con base en el pronóstico climatológico y la humedad radicular actual, la IA programó el cierre automático de electroválvulas en Lote 2 y proyecta un rendimiento de cosecha 18% superior al ciclo anterior.',
+            impact: 'Impacto estimado: Ahorro del 28% en consumo de agua y energía de bombeo.'
+          },
+          {
+            title: 'Alerta Temprana de Plagas y Nutrientes',
+            subtitle: 'Visión artificial y sensores edáficos',
+            badge: 'Plan de Acción Generado',
+            metrics: [
+              { label: 'Nitrógeno / Nutrientes', value: 'Bajo (-12%)', status: 'Sector Poniente', good: false },
+              { label: 'Diagnóstico Visión IA', value: 'Alerta Foliar', status: 'Detección temprana', good: false },
+              { label: 'Mantenimiento Pozo 2', value: 'En 14 días', status: 'Predicción IA', good: true },
+              { label: 'pH Suelo Sector Poniente', value: '7.4 pH', status: 'Ligera alcalinidad', good: false }
+            ],
+            recommendation: 'El análisis de imágenes detectó cambios tempranos de vigor foliar en el 4% de la parcela poniente. La IA sugiere fertirrigación localizada únicamente en esa zona y agenda mantenimiento preventivo de bomba hidráulica.',
+            impact: 'Impacto estimado: Reducción del 35% en uso de agroquímicos mediante aplicación focalizada.'
+          }
+        ]
+      }
+    };
+
+    let currentSimMode = 'ganaderia';
+    let currentSimScenarioIdx = 0;
+
+    function setSimulatorMode(mode) {
+      currentSimMode = mode;
+      currentSimScenarioIdx = 0;
+
+      const btnGan = document.getElementById('sim-btn-ganaderia');
+      const btnAgr = document.getElementById('sim-btn-agricultura');
+
+      if (mode === 'ganaderia') {
+        btnGan.className = 'px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all bg-techgreen text-white shadow cursor-pointer';
+        btnAgr.className = 'px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all text-emerald-200 hover:text-white cursor-pointer';
+      } else {
+        btnAgr.className = 'px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all bg-techgreen text-white shadow cursor-pointer';
+        btnGan.className = 'px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all text-emerald-200 hover:text-white cursor-pointer';
+      }
+
+      renderSimulator();
+    }
+
+    function selectSimulatorScenario(index) {
+      currentSimScenarioIdx = index;
+      renderSimulator();
+    }
+
+    function renderSimulator() {
+      const modeObj = simulatorData[currentSimMode];
+      const scenario = modeObj.scenarios[currentSimScenarioIdx];
+
+      // Render botones de escenario
+      const scenariosContainer = document.getElementById('sim-scenarios');
+      scenariosContainer.innerHTML = modeObj.scenarios.map((sc, idx) => {
+        const active = idx === currentSimScenarioIdx;
+        return `
+          <button
+            type="button"
+            onclick="selectSimulatorScenario(${idx})"
+            class="w-full text-left p-4 rounded-2xl border transition-all cursor-pointer ${
+              active
+                ? 'bg-emerald-900/95 border-harvest text-white shadow-md'
+                : 'bg-forest-dark/70 border-emerald-800/80 text-emerald-200 hover:border-emerald-600'
+            }">
+            <div class="font-display font-bold text-sm flex items-center justify-between">
+              <span>${sc.title}</span>
+              ${active ? '<span class="w-2 h-2 rounded-full bg-harvest"></span>' : ''}
+            </div>
+            <div class="text-xs text-emerald-300/75 mt-0.5">${sc.subtitle}</div>
+          </button>
+        `;
+      }).join('');
+
+      // Render métricas
+      const metricsContainer = document.getElementById('sim-metrics-grid');
+      metricsContainer.innerHTML = scenario.metrics.map(m => `
+        <div class="bg-forest-dark/90 border border-emerald-800/90 rounded-2xl p-4">
+          <div class="text-[11px] text-emerald-300/80 font-medium">${m.label}</div>
+          <div class="font-display font-extrabold text-lg sm:text-xl text-white mt-1">${m.value}</div>
+          <div class="text-[11px] font-bold mt-1 ${m.good ? 'text-techgreen-vibrant' : 'text-harvest'}">${m.status}</div>
+        </div>
+      `).join('');
+
+      document.getElementById('sim-model-tag').textContent = modeObj.modelTag;
+      document.getElementById('sim-action-badge').textContent = scenario.badge;
+      document.getElementById('sim-ai-recommendation').textContent = scenario.recommendation;
+      document.getElementById('sim-ai-impact').textContent = scenario.impact;
+
+      const now = new Date();
+      document.getElementById('sim-timestamp').textContent =
+        'Telemetría: ' + now.toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    }
+
+    function randomizeSimulatorReadings() {
+      // Alterna escenario o actualiza sello de tiempo con ligera variación realista
+      currentSimScenarioIdx = (currentSimScenarioIdx + 1) % simulatorData[currentSimMode].scenarios.length;
+      renderSimulator();
+    }
+
+    // -----------------------------------------------------------------------
+    // 4. EXPLORADOR POR PESTAÑAS DE LA PLATAFORMA SMARTAGRO (6 MÓDULOS)
+    // -----------------------------------------------------------------------
+    const smartAgroModules = [
+      {
+        badge: 'Módulo 01 • Control Pecuario',
+        title: 'Ganado, Trazabilidad y Engorda',
+        description: 'Gestión integral del hato bovino y ovino desde el nacimiento o recepción hasta su comercialización, enlazada directamente con la manga automatizada SMART-WEIGHING.',
+        features: [
+          'Identificación individual electrónica (RFID) y registro genealógico.',
+          'Pesaje automatizado en tiempo real con histórico de ganancia diaria.',
+          'Conteo automatizado de animales mediante cámaras y Visión Artificial.',
+          'Alertas de adecuación de dietas nutricionales y calendario sanitario.'
+        ],
+        kpiTitle: 'Trazabilidad del Hato',
+        kpiValue: '100% Digital',
+        kpiSub: 'Consulta individual y global desde móvil o PC'
+      },
+      {
+        badge: 'Módulo 02 • Agricultura de Precisión',
+        title: 'Cultivos, Geolocalización y Sensores IoT',
+        description: 'Monitoreo continuo de parcelas mediante redes inalámbricas de sensores y actuadores inteligentes, integrando mapas georreferenciados y pronóstico climatológico.',
+        features: [
+          'Configuración de lotes y unidades de producción con integración de Google Maps.',
+          'Sensores IoT de humedad de suelo, humedad relativa, temperatura, aire, nutrientes, pH de agua/suelo y plagas.',
+          'Apertura y cierre remoto o automatizado de electroválvulas y monitoreo de flujómetros.',
+          'Seguimiento completo de preparación, desarrollo, cosecha, poscosecha, bodega y empaque.'
+        ],
+        kpiTitle: 'Ahorro Hídrico Promedio',
+        kpiValue: 'Hasta 30%',
+        kpiSub: 'Riego inteligente basado en humedad real y clima'
+      },
+      {
+        badge: 'Módulo 03 • Inteligencia de Negocios',
+        title: 'Analítico, Costeo e Inteligencia Artificial',
+        description: 'Convierte los datos operativos de campo en estados financieros claros y proyecciones de rentabilidad mediante algoritmos de ciencia de datos.',
+        features: [
+          'Costeo exacto por cada kilogramo producido (carne o cosecha agrícola).',
+          'Modelos de Regresión Lineal con IA para proyectar rentabilidad y rendimientos futuros.',
+          'Estados financieros al día, control de compras de insumos y registro de ventas.',
+          'Comparativos históricos por lote, temporada y unidad de producción.'
+        ],
+        kpiTitle: 'Precisión Financiera',
+        kpiValue: 'Costo / Kilo',
+        kpiSub: 'Visibilidad total de márgenes por unidad'
+      },
+      {
+        badge: 'Módulo 04 • Activos e Insumos',
+        title: 'Inventarios y Mantenimiento Predictivo',
+        description: 'Control estricto de entradas, salidas y vida útil de todos los recursos materiales e infraestructura hidráulica del rancho.',
+        features: [
+          'Gestión de almacén de agroquímicos, fertilizantes, alimentos y refacciones.',
+          'Expediente técnico de maquinaria agrícola, implementos y pozos de agua.',
+          'Calendario inteligente y predicción de mantenimiento preventivo asistido por IA.',
+          'Alertas automáticas de reabastecimiento para evitar desabasto en campo.'
+        ],
+        kpiTitle: 'Disponibilidad Operativa',
+        kpiValue: '+98.5%',
+        kpiSub: 'Prevención de paros no programados en maquinaria'
+      },
+      {
+        badge: 'Módulo 05 • Capital Humano',
+        title: 'Recursos Humanos (RRHH) en Campo',
+        description: 'Administración ágil del personal operativo y cuadrillas de trabajo, diseñada para las condiciones reales del sector agropecuario mexicano.',
+        features: [
+          'Registro y seguimiento integral de trabajadores permanentes y temporales.',
+          'Pase de lista digital desde dispositivos móviles en el punto de trabajo.',
+          'Conformación de cuadrillas y asignación en calendario de programas de trabajo.',
+          'Cálculo automatizado de nómina y prestaciones conforme a ley.'
+        ],
+        kpiTitle: 'Eficiencia Administrativa',
+        kpiValue: '-65% Tiempo',
+        kpiSub: 'Automatización de listas y cálculo de prestaciones'
+      },
+      {
+        badge: 'Módulo 06 • Seguridad y Usabilidad',
+        title: 'Control de Acceso y Diseño UX Centrado en el Campo',
+        description: 'Arquitectura segura por perfiles de usuario con interfaces intuitivas diseñadas bajo estándares internacionales para personas con poca experiencia informática.',
+        features: [
+          'Control granular de permisos según el rol (Dueño, Administrador, Veterinario, Caporal).',
+          'Interfaz de Usuario (IUX) validada bajo el estándar internacional ISO 9241-210.',
+          'Operación híbrida: funciona en servidor local sin internet o sincronizado en la nube.',
+          'Tecnología libre de costosas licencias recurrentes por usuario.'
+        ],
+        kpiTitle: 'Estándar de Usabilidad',
+        kpiValue: 'ISO 9241-210',
+        kpiSub: 'Curva de aprendizaje rápida para todo el equipo'
+      }
+    ];
+
+    function selectSmartAgroTab(index) {
+      // Actualizar estilos de botones
+      const tabs = document.querySelectorAll('.smartagro-tab');
+      tabs.forEach((tab, idx) => {
+        if (idx === index) {
+          tab.className = 'smartagro-tab flex-shrink-0 px-4 py-3 rounded-xl font-display font-bold text-xs sm:text-sm bg-forest text-white shadow-md transition-all cursor-pointer';
+        } else {
+          tab.className = 'smartagro-tab flex-shrink-0 px-4 py-3 rounded-xl font-display font-bold text-xs sm:text-sm bg-white text-slate-700 border border-slate-200 hover:border-techgreen transition-all cursor-pointer';
+        }
+      });
+
+      const mod = smartAgroModules[index];
+      const panel = document.getElementById('smartagro-panel');
+      panel.innerHTML = `
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-8 space-y-4">
+            <span class="inline-block px-3 py-1 rounded-full bg-techgreen-soft text-forest text-xs font-bold uppercase tracking-wider">
+              ${mod.badge}
+            </span>
+            <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-forest">
+              ${mod.title}
+            </h3>
+            <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+              ${mod.description}
+            </p>
+            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+              ${mod.features.map(f => `
+                <li class="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 bg-slate-50 p-3 rounded-xl border border-slate-200/70">
+                  <svg class="w-4 h-4 text-techgreen flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>${f}</span>
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+
+          <div class="lg:col-span-4">
+            <div class="bg-forest-dark text-white rounded-2xl p-6 border border-emerald-800 space-y-4">
+              <div class="text-xs font-bold uppercase tracking-wider text-harvest">${mod.kpiTitle}</div>
+              <div class="font-display font-extrabold text-3xl sm:text-4xl text-techgreen-vibrant">${mod.kpiValue}</div>
+              <p class="text-xs sm:text-sm text-emerald-100/80 leading-relaxed">${mod.kpiSub}</p>
+              <div class="pt-3 border-t border-emerald-800">
+                <button
+                  type="button"
+                  onclick="openDemoModal('${mod.title}')"
+                  class="w-full py-3 px-4 rounded-xl bg-techgreen hover:bg-techgreen-vibrant hover:text-forest-dark text-white font-bold text-xs sm:text-sm transition-all cursor-pointer">
+                  Solicitar Demo de este Módulo
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // -----------------------------------------------------------------------
+    // 5. MANEJO DE FORMULARIOS INTERACTIVOS (SIN ALERTAS NATIVAS)
+    // -----------------------------------------------------------------------
+    function handleFormSubmit(event, prefix) {
+      event.preventDefault();
+      const name = document.getElementById(`${prefix}-name`).value.trim();
+      const email = document.getElementById(`${prefix}-email`).value.trim();
+      const interest = document.getElementById(`${prefix}-interest`).value;
+      const ticket = 'AGA-' + Math.floor(100000 + Math.random() * 900000);
+
+      document.getElementById(`${prefix}-form`).classList.add('hidden');
+      const confBox = document.getElementById(`${prefix}-confirmation`);
+      confBox.classList.remove('hidden');
+
+      document.getElementById(`${prefix}-confirmation-text`).innerHTML =
+        `Gracias, <strong>${name}</strong>. Hemos registrado tu interés en <strong>${interest}</strong> y enviaremos los detalles de acceso y diagnóstico a <strong>${email}</strong>.`;
+      document.getElementById(`${prefix}-ticket`).textContent = `Folio de Seguimiento: ${ticket}`;
+    }
+
+    function resetForm(prefix) {
+      const form = document.getElementById(`${prefix}-form`);
+      const conf = document.getElementById(`${prefix}-confirmation`);
+      form.reset();
+      form.classList.remove('hidden');
+      conf.classList.add('hidden');
+    }
+
+    // -----------------------------------------------------------------------
+    // 6. INICIALIZACIÓN AL CARGAR LA PÁGINA Y SCROLL REVEAL
+    // -----------------------------------------------------------------------
+    document.addEventListener('DOMContentLoaded', () => {
+      renderSimulator();
+      selectSmartAgroTab(0);
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>
